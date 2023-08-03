@@ -1,0 +1,120 @@
+/* Define as cores principais da página */
+:root {
+  --purple: #8352D5;
+  --dark-blue: #0E2439;
+  --orange: #F29200;
+  --light-gray: #F3F3F3;
+  --white: #FFFFFF;
+}
+
+/* Define o estilo geral da página */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-gray);
+  color: var(--dark-blue);
+}
+
+/* Define o estilo do cabeçalho da página */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+
+/* Define o estilo dos botões da página */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: var(--purple);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--dark-blue);
+}
+
+/* Define o estilo do formulário de contato */
+form {
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 2rem;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--dark-blue);
+  border-radius: 0.25rem;
+  background-color: var(--light-gray);
+  font-size: 1rem;
+  color: var(--dark-blue);
+  transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--purple);
+}
+
+textarea {
+  height: 10rem;
+}
+
+/* Define o estilo do rodapé da página */
+footer {
+  padding: 1rem;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-align: center;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: var(--white);
+  transition: color 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: var(--orange);
+}
+
+.fa {
+  font-size: 1.5rem;
+}

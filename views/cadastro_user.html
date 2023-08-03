@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuários</title>
+
+    <style>
+        body {
+            background-color: #e0e0e0;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px #000;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background-color: #dbdbdb;
+            border: 0.5px solid black;
+            border-radius: 10px;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #000000;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #8a8a8a;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 2rem;">Cadastro de Usuários</h1>
+
+    {% if mensagem %}
+    <h3 style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">{{ mensagem }}</h3>
+    {% endif %}
+
+    <form method="POST" action="/auth/cadastrar_user">
+        <label>Nome:</label>
+        <input type="text" name="username">
+
+        <label>E-mail:</label>
+        <input type="email" name="email">
+
+        <label>Senha:</label>
+        <input type="password" name="password">
+
+        <label>Confirmar senha:</label>
+        <input type="password" name="confirmar_senha">
+
+        <input style="background-color: #333;" type="submit" value="Cadastrar">
+    </form>
+
+
+    <a style="color: black; display: flex; align-items: center; justify-content: center; margin-top: 2rem;" href="/auth/login">Voltar para o login</a>
+
+</body>
+</html>
