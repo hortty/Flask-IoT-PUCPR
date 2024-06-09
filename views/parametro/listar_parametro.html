@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Parametros</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MQ5Lg5n5Zn5Q7LTspQmnMZew3I3N7EpuoM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7/qWJMLt0/Z90C5nL7Bujn6wa7XwQ9ioL+UZTjgbcqz0hdaYQMDl5Pzq7X5/8pDz"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9ofH8PdT+ov5/5+aCXGLk5OgT+aSO98Uyk3wOFSkWW0vVAMy1H1qKIE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: black;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #0fc98b;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #006241;
+        }
+
+        .list-itens {
+            display: flex; /* um ao lado do outro */
+            list-style: none; /* tirar bolinha default da criacao de uma lista */
+            gap: 12px; /* distanciamento entre itens */
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-itens a {          /* pegando a tag a dentro da classe list-itens */
+            text-decoration: none; /* tirar sublinhado */
+            color: rgb(0, 0, 0);
+            padding: 1.4rem; /* area de contato */
+            transform: 2ms ease-in; /* effect transition */
+            position: relative;  /* necessario para o efeito (position absolute) */
+        }
+
+        .list-itens a:before {          /* before: efeito de transicao*/
+            content: ' ';
+            position: absolute; /* necessary */
+            bottom: 0px;         /* inicial position bottom */
+            left: 0px;    /* inicial position left */
+            width: 0px;    /* inicialmente começa "sem nada" */
+            height: 1px;    /* small */
+            background-color: green;
+            transition: all 1.3s ease;    
+        }
+
+        .list-itens a:hover:before {          /* hover (passar mouse) */
+            width: 100%;        /* aumenta a "barrinha" */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            background-color: #333;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+        .btn:hover {
+            background-color: green;
+            color: white;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        table {
+            background-color: #fff;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding-right: 20px;
+            padding: 20px 20px 20px 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #333;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #555;
+        }
+
+        .btn-link {
+            color: #333;
+            text-decoration: none;
+        }
+
+        
+    </style>
+
+</head>
+<body>
+
+    <header class="d-flex align-items-center justify-content-between p-2 bg-white shadow-sm"
+        style="background-color: #8FBC8F !important;">
+        <div class="d-flex align-items-center flex-column justify-content-center">
+            <img src="{{ url_for('static', filename='img/logo.png') }}"
+                style="height: 4rem; border-radius: 9999px; width: 4rem;">
+            <span class="h6 fw-bold mt-1" style="letter-spacing: 0.4rem; color: #006241;">Cultiva</span>
+        </div>
+        
+        <nav>
+            <ul class="list-itens" style="margin-top: 3rem;">
+                <li><a href="/admin/sensor/listar_sensor" style="text-decoration: none; color: #006241;">Listar sensores</a></li>
+                <li><a href="/admin/alarme/listar_alarme" style="text-decoration: none; color: #006241;">Alarmes</a></li>
+                <li><a href="/admin/parametro/listar_parametro" style="text-decoration: none; color: #006241;">Cadastrar parâmetros</a></li>
+            </ul>
+        </nav>
+
+        <div>
+            <a href="/auth/logout" class="btn" style="text-decoration: none;">
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <h1 style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 2rem;">Lista de Parâmetros</h1>
+
+    <div style="display: flex; justify-content: center;">
+        <table style="max-width: 60rem;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sensor ID</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parametro in parametros %}
+                    <tr>
+                        <td>{{ parametro['id'] }}</td>
+                        <td>{{ parametro['nome'] }}</td>
+                        <td>{{ parametro['sensor_id'] }}</td>
+                        <td>{{ parametro['valor'] }}</td>
+                        <td>{{ parametro['descricao'] }}</td>
+                        <td>
+                            <button class="button1" style="cursor: pointer; color: #ccc; background-color: #333; padding-right: 10px; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" data-id="{{ parametro['id'] }}">Excluir</button>
+                            <button type="button" style="cursor: pointer; color: #ccc; background-color: #333; padding-right: 10px; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" onclick="habilitarCampos()">Editar</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <p style="display: flex; justify-content: center; align-items: center; margin: 12px; flex-direction: column;">
+        <a href="/admin/parametro/cadastro_parametro" class="btn-link">Clique aqui para cadastrar parâmetros!</a>
+        <a href="/admin/iot/interface_iot" class="btn-link" style="margin-top: 10px;">Voltar para o IoT</a>
+    </p>
+
+    <div class="container">
+
+        <form method="POST" action="/admin/parametro/atualizar_parametro">
+            <h3>Alterar parâmetros:</h3>
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="number" id="id" name="id" class="campo" placeholder="Digite o ID do item" {% if not habilitado %}disabled{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" class="campo" {% if not habilitado %}disabled{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="sensor_id">Sensor ID:</label>
+                <input type="number" id="sensor_id" name="sensor_id" class="campo" {% if not habilitado %}disabled{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor" class="campo" {% if not habilitado %}disabled{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" class="campo" {% if not habilitado %}disabled{% endif %}>
+            </div>
+
+            <input type="submit" value="Salvar" class="btn-submit">
+        </form>
+    </div>
+
+    <script>
+        function habilitarCampos() {
+            var campos = document.getElementsByClassName('campo');
+            for (var i = 0; i < campos.length; i++) {
+                campos[i].disabled = false;
+            }
+        }
+
+        function direcionarURL() {
+            window.location("/admin/parametro/listar_parametro")
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".button1").click(function() {
+                var id = $(this).data("id");
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "/admin/parametro/excluir_parametro",
+                    data: { id: id },
+                    success: function(response) {
+                        console.log("sucesso!");
+                        window.location.href = "/admin/parametro/listar_parametro";
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cultiva</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cultiva é a solução perfeita para monitorar a temperatura e umidade das suas plantas de maneira fácil e precisa.">
+
+    <meta property="og:title" content="Cultiva">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/cultiva.jpg') }}">
+    <meta property="og:description"
+        content="Cultiva é a solução perfeita para monitorar a temperatura e umidade das suas plantas de maneira fácil e precisa.">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7MQ5Lg5n5Zn5Q7LTspQmnMZew3I3N7EpuoM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7/qWJMLt0/Z90C5nL7Bujn6wa7XwQ9ioL+UZTjgbcqz0hdaYQMDl5Pzq7X5/8pDz"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9ofH8PdT+ov5/5+aCXGLk5OgT+aSO98Uyk3wOFSkWW0vVAMy1H1qKIE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+
+    <style>
+        :root {
+            --green: #32CD32;
+            --dark-green: #008000;
+            --orange: #F29200;
+            --light-gray: #F3F3F3;
+            --white: #FFFFFF;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 10000;
+        }
+
+        body,
+        html {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            /* background-color: var(--light-gray); */
+            color: var(--dark-green);
+        }
+
+        #video-background {
+            opacity: 0.8;
+            margin-top: 6.5rem;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            background-size: cover;
+            -webkit-filter: blur(5px);
+            filter: blur(5px);
+        }
+
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-green);
+        } */
+
+        /* .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+        } */
+
+        .logo {
+            background-color: #8FBC8F;
+            width: 100px;
+            height: 100px;
+            display: block;
+            text-indent: -9999px;
+        }
+
+        .btn-custom {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            background-color: var(--green);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--dark-green);
+            color: whitesmoke;
+        }
+
+        .rounded-content {
+            border-radius: 20px;
+        }
+
+        .main-page {
+            justify-content: center;
+        }
+
+        .form-container {
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 2rem;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus {
+            border-color: var(--green);
+        }
+
+        .feature-image img {
+            height: 6rem;
+            width: 6rem;
+            border: 0.5px solid var(--dark-green);
+            border-radius: 9999px;
+        }
+
+        .text-decoration-none {
+            text-decoration: none;
+            color: #006241;
+        }
+
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: black;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #0fc98b;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #006241;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #e2e2e2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            background-color: #f7f7f7;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #666;
+        }
+
+        .mensagem {
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="d-flex align-items-center justify-content-between p-2 bg-white shadow-sm"
+        style="background-color: #8FBC8F !important;">
+        <div class="d-flex align-items-center flex-column justify-content-center p-2">
+            <img src="{{ url_for('static', filename='img/logo.png') }}"
+                style="height: 4rem; border-radius: 9999px; width: 4rem;">
+            <span class="h6 fw-bold mt-1" style="letter-spacing: 0.4rem; color: #006241;">Cultiva</span>
+        </div>
+    </header>
+
+    <div id="video-container">
+        <video autoplay muted loop id="video-background">
+            <source src="{{ url_for('static', filename='video/plants_video.mp4') }}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <main>
+
+        <div class="bg-white" style="height: 7rem;">
+    
+        </div>
+    
+        <div style="margin-top: 4rem;">
+    
+        </div>
+    
+        {% if mensagem %}
+        <p class="mensagem" style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">{{ mensagem }}</p>
+        {% endif %}
+    
+        <form method="POST" action="/auth/login_post">
+            <label class="text-dark">Email:</label>
+            <input type="email" name="email">
+    
+            <label class="text-dark">Senha:</label>
+            <input type="password" name="password">
+    
+            <div class="d-flex justify-content-center align-items-center" style="margin-left: 23rem;">
+                <input type="submit" class="align-self-end" value="Entrar">
+            </div>
+        </form>   
+        
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 2rem;">
+            <p class="text-white">Ainda não possui uma conta?</p>
+            <a href="/auth/cadastro_user" class="text-white">Realize seu cadastro clicando nesse link!</a>
+        </div>
+    </main>
+
+
+    <div class="bg-white p-1" style="margin-top: 1rem;">
+
+    </div>
+
+    <div class="">
+
+        <footer class="bg-dark text-center text-lg-start text-white w-100">
+            <!-- Container da grade -->
+            <div class="container p-4">
+                <!-- Linha da grade -->
+                <div class="row mt-4">
+                    <!-- Coluna da grade -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Veja outros produtos</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>Sensores
+                                    de volume</a>
+                            </li>
+
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="fas fa-user-edit fa-fw fa-sm me-2"></i>Todos os produtos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Coluna da grade -->
+
+                    <!-- Coluna da grade -->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Execução do contrato</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Entrega</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="fas fa-backspace fa-fw fa-sm me-2"></i>Devoluções</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="far fa-file-alt fa-fw fa-sm me-2"></i>Regulamentos</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="far fa-file-alt fa-fw fa-sm me-2"></i>Política de privacidade</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Coluna da grade -->
+
+                    <!-- Coluna da grade -->
+
+                    <!-- Coluna da grade -->
+                    <div class="col-lg-6 col-md-6 mb-4 mb-md-0" style="text-align: end;" id="contato">
+                        <h5 class="text-uppercase">Entre em contato</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!" class="text-white"><i class="fas fa-at fa-fw fa-sm me-2"></i>+55 (42)
+                                    99977-5566</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white"><i
+                                        class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>cultiva@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Coluna da grade -->
+                </div>
+                <!-- Linha da grade -->
+            </div>
+            <!-- Container da grade -->
+
+            <!-- Direitos autorais -->
+            <div class="text-center p-3 w-100" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2024 Direitos Autorais:
+                <a class="text-white">Cultiva</a>
+            </div>
+            <!-- Direitos autorais -->
+
+        </footer>
+
+    </div>
+    <!-- End of .container -->
+
+</body>
+
+</html>
