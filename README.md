@@ -1,6 +1,6 @@
 # Flask-Web-IoT-Project-PUCPR
 
-This is an IoT and Web project that controls humidity and temperature using sensors on ESP32, communicating with Python through the Cloud. The data read from the sensors passes through a Flask App and is stored in a MySQL database. 
+This is an IoT and Web project that controls humidity and temperature using sensors on ESP32, communicating with Python through the Cloud (MqTT). The data read from the sensors passes through a Flask App and is stored in a SQLite database. 
 The project was developed using Flask to enable user interaction. Users can view the sensor logs, add sensors, set parameters, and perform other actions using the Flask App that I've developed.
 
 Project (hardware) link: https://wokwi.com/projects/366991099305988097
