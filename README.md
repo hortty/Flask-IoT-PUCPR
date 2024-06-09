@@ -6,7 +6,6 @@ The project was developed using Flask to enable user interaction. Users can view
 Project (hardware) link: https://wokwi.com/projects/366991099305988097
 
 Project image:
-![image](https://github.com/hortty/Flask-IoT-PUCPR/assets/86082589/5c76fce6-3e90-4741-a17b-587e4ba125b3)
 ![image](https://github.com/hortty/Flask-IoT-PUCPR/assets/86082589/f01f32b9-5d0a-4dc1-941d-0a53823697af)
 
 
