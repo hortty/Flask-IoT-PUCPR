@@ -8,6 +8,3 @@ Project (hardware) link: https://wokwi.com/projects/366991099305988097
 Project image:
 ![image](https://github.com/hortty/Flask-IoT-PUCPR/assets/86082589/f01f32b9-5d0a-4dc1-941d-0a53823697af)
 
-
-Vídeo explicação:
-https://drive.google.com/file/d/1YKSzQSHrfQMm6gQSUMm6WbOLlCOw9Or-/view?usp=sharing
